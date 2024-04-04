@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:notes/blocs/tasks/tasks_block.dart';
 import 'package:notes/blocs/tasks/tasks_event.dart';
 import 'package:notes/blocs/tasks/tasks_state.dart';
+import 'package:notes/screens/globals/global_ink.dart';
 import 'package:notes/screens/home/widgets/task_item.dart';
 import 'package:notes/screens/routes.dart';
 import 'package:notes/screens/search_tasks/search_tasks_screen.dart';
@@ -37,20 +38,18 @@ class HomeScreen extends StatelessWidget {
                 }
               }
             },
-            child: IconButton(
-              onPressed: () async {
+            child: GlobalInk(
+              icon: Icons.search,
+              onTap: () async {
                 showSearch(
                   context: context,
                   delegate: TasksSearchScreen(),
                 );
                 context.read<TasksBloc>().add(SearchTaskEvent());
               },
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
             ),
           ),
+          SizedBox(width: 22.w)
         ],
       ),
       body: BlocBuilder<TasksBloc, TasksState>(
